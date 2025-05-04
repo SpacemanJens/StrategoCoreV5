@@ -141,7 +141,7 @@ function preload() {
         gameObjects: [],  // Start with empty array jens
         canonTowerHits: Array(15).fill(0),
         canonTowerCount: 1,
-        canonTowerShootingInterval: 2000,
+        canonTowerShootingInterval: 1000,
     });
 
     me = partyLoadMyShared({
