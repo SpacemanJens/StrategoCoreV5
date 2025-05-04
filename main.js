@@ -112,7 +112,7 @@ console.log("Total pieces per team:", totalPieces);
 //===================================================
 // SETUP AND INITIALIZATION
 //===================================================
- 
+
 function preload() {
     partyConnect(
         "wss://p5js-spaceman-server-29f6636dfb6c.herokuapp.com",
@@ -141,7 +141,7 @@ function preload() {
         gameObjects: [],  // Start with empty array jens
         canonTowerHits: Array(15).fill(0),
         canonTowerCount: 1,
-        canonTowerShootingInterval: 1000,
+        canonTowerShootingInterval: 2000,
     });
 
     me = partyLoadMyShared({
@@ -1473,8 +1473,6 @@ function handleHostDuties() {
     // Update shared.characterList 'takenBy' info
     updateCharacterAssignments();
 
-    updateCanonTowers()
-
     // State machine for game phases
     switch (shared.gameState) {
         case "GAME-SETUP":
@@ -1598,6 +1596,9 @@ function handleGameInProgressHost() {
 
     // Reset canon tower hits
     resetCanonTowerHitsForPlayersWithoutCharacters();
+
+    // Move canon towers, bullets, check collisions and sync to shared object 
+    updateCanonTowers()
 
     // Check for disconnected Core Command
     checkIfCoreCommandDisconnected()
@@ -2358,4 +2359,3 @@ function twoPlayersWithTheSamePlayerNumberExist() {
     }
     return false
 }
- 
